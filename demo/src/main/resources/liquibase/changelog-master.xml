@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="tiagobarbosa02@outlook.com">
+        <preConditions>
+            <not>
+                <tableExists tableName="funcionario" />
+            </not>
+        </preConditions>
+        <createTable tableName="funcionario">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(50)" />
+            <column name="setor_rh" type="BOOLEAN" />
+            <column name="atrasos" type="INT(3)" />
+            <column name="bloqueado" type="BOOLEAN" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="tiagobarbosa02@outlook.com">
+        <preConditions>
+            <not>
+                <tableExists tableName="ponto" />
+            </not>
+        </preConditions>
+        <createTable tableName="ponto">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_funcionario" type="BIGINT">
+                <constraints foreignKeyName="fk_id_funcionario_references_ponto" referencedTableName="funcionario" referencedColumnNames="id"/>
+            </column>
+            <column name="data" type="DATE"/>
+            <column name="horario" type="TIME" />
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

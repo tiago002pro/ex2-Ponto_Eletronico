@@ -1,40 +1,29 @@
 package com.example.demo.model;
 
+import liquibase.datatype.core.IntType;
+import liquibase.datatype.core.SmallIntType;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Setter
+@Getter
 public class Funcionario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nome")
     private String nome;
-    private Boolean rh;
-    private Integer contaAtraso;
-    private Boolean bloqueio;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    @Column(name = "setor_rh")
+    private Boolean setor_rh;
 
-    public String getNome() {
-        return nome;
-    }
+    @Column(name = "atrasos")
+    private Integer atrasos;
 
-    public void setRh(Boolean rh) {
-        this.rh = rh;
-    }
-
-    public Boolean getRh() {
-        return rh;
-    }
-
-    public void setContaAtraso(Integer contaAtraso) {
-        this.contaAtraso = contaAtraso;
-    }
-
-    public Integer getContaAtraso() {
-        return contaAtraso;
-    }
-
-    public void setBloqueio(Boolean bloqueio) {
-        this.bloqueio = bloqueio;
-    }
-
-    public Boolean getBloqueio() {
-        return bloqueio;
-    }
+    @Column(name = "bloqueado")
+    private Boolean bloqueado;
 }

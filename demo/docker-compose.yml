@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db_ex2:
+    image: postgres:11-alpine
+    restart: always
+    container_name: ex2
+    ports:
+      - 7778:5432
+    environment:
+      POSTGRES_DB: ex2
+      POSTGRES_USER: tiago
+      POSTGRES_PASSWORD: 123456

@@ -1,34 +1,27 @@
 package com.example.demo.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Entity
+@Setter
+@Getter
 public class Ponto {
-    private Funcionario funcionario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "data")
     private LocalDate data;
+
+    @Column(name = "horario")
     private LocalTime horario;
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setHorario(LocalTime horario) {
-        this.horario = horario;
-    }
-
-    public LocalTime getHorario() {
-        return horario;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_funcionario", referencedColumnName = "id")
+    private Funcionario funcionario;
 }
